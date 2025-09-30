@@ -63,6 +63,17 @@ This project showcases an end-to-end personalized recommendation platform. It co
 - Create a production bundle with `npm run build`.
 - Deploy the FastAPI app with a production ASGI server (e.g., Uvicorn + Gunicorn) and back it with a managed SQL database.
 
+### Publishing the frontend to GitHub Pages
+
+The React SPA can be hosted as a static site via GitHub Pages. The repository already contains a GitHub Actions workflow that builds the frontend and publishes the generated assets.
+
+1. Update the FastAPI deployment to be reachable from the public internet and note its base URL (for example `https://api.example.com`).
+2. In your GitHub repository, go to **Settings → Secrets and variables → Actions** and create a new secret named `VITE_API_BASE_URL` with the public backend URL. The workflow injects this value at build time so that the static site can communicate with your API.
+3. Enable GitHub Pages in **Settings → Pages** and choose the "GitHub Actions" build and deployment source.
+4. Push (or merge) changes to the `main` branch. The `Deploy frontend to GitHub Pages` workflow will run automatically, build the Vite project located in `frontend/`, and publish the `dist/` output to the `gh-pages` environment.
+
+The frontend is configured to use a hash-based router and relative asset paths, ensuring that it works seamlessly when served from the `/gh-pages` branch without requiring any custom domain or server configuration.
+
 ## Architecture overview
 
 ```
