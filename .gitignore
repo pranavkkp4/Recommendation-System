@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.db
+.env
+.venv/
+venv/
+node_modules/
+frontend/dist/
+backend/recommender.db
+.DS_Store
